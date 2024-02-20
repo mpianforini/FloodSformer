@@ -1,0 +1,38 @@
+TRAIN:
+  ENABLE: False
+  MODE: train_VPTR
+  CHECKPOINT_EPOCH_RESET: False
+DATA:
+  DATASET: DB_reservoir
+  PATH_TRAIN_DATASET: 'dataset/DB_reservoir/Results/'  # CHANGE
+  PATH_TEST_DATASET: 'dataset/DB_reservoir/Results_test/'  # CHANGE
+  MAX_DEPTH: 0.22
+  BATCH_SIZE: 4
+  NUM_INPUT_FRAMES: 8
+  IMAGE_HEIGHT: 256
+  IMAGE_WIDTH: 128
+  WET_DEPTH: 0.0005
+FORECAST:
+  ENABLE: True
+  NUM_PAST_FRAMES: 8
+  NUM_FUTURE_FRAMES: 113
+SOLVER:
+  MAX_EPOCH: 0
+MODEL:
+  PRETRAIN: True
+  PRETRAINED_AE: 'pretrain/AE_tank_e66.tar'
+  PRETRAINED_VPTR: 'pretrain/VPTR_tank_e212.tar'
+FLOODSFORMER:
+  AE_DOWNSAMPLING: 4
+  EMBED_DIM: 512
+TEST:
+  ENABLE: False
+DATA_LOADER:
+  ZERO_DEPTH: 1e-4
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+TENSORBOARD:
+  ENABLE: True
+NUM_GPUS: 1
+
+# for informations about parameters see: floodsformer/config/defaults.py

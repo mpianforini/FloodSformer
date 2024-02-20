@@ -1,0 +1,42 @@
+TRAIN:
+  ENABLE: True
+  MODE: train_AE
+  EVAL_PERIOD: 2
+  CHECKPOINT_PERIOD: 2
+  CHECKPOINT_EPOCH_RESET: True  # 'False' for the second part of the AE training
+DATA:
+  DATASET: DB_reservoir
+  PATH_TRAIN_DATASET: 'dataset/DB_reservoir/Results/'
+  PATH_TEST_DATASET: 'dataset/DB_reservoir/Results_test/'
+  MAX_DEPTH: 0.22
+  BATCH_SIZE: 12
+  NUM_INPUT_FRAMES: 0
+  IMAGE_HEIGHT: 256
+  IMAGE_WIDTH: 128
+  WET_DEPTH: 0.0005
+FORECAST:
+  ENABLE: False
+SOLVER:
+  MAX_EPOCH: 80  # 150 for the second part of the AE training
+  BASE_LR: 0.001 # 1e-05 for the second part of the AE training
+MODEL:
+  PRETRAIN: True
+  PRETRAINED_AE: 'pretrain/MovingMNIST_AE_mod.tar'  # CHANGE for the second part of the AE training
+FLOODSFORMER:
+  AE_DOWNSAMPLING: 4
+  EMBED_DIM: 512
+  LAM_GAN: 0.01  # 0.0 for the second part of the AE training
+  LAM_GDL: 1.0   # 0.01 for the second part of the AE training
+  LAM_L1: 0.0
+  LAM_MSE: 1.0
+TEST:
+  ENABLE: True
+DATA_LOADER:
+  ZERO_DEPTH: 1e-4
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+TENSORBOARD:
+  ENABLE: True
+NUM_GPUS: 1
+
+# for informations about parameters see: floodsformer/config/defaults.py

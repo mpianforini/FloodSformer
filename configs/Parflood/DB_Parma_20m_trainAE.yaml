@@ -1,0 +1,44 @@
+TRAIN:
+  ENABLE: True
+  MODE: train_AE
+  EVAL_PERIOD: 2
+  CHECKPOINT_PERIOD: 2
+  CHECKPOINT_EPOCH_RESET: True  # 'False' for the second part of the AE training
+DATA:
+  DATASET: DB_Parma
+  PATH_TRAIN_DATASET: 'dataset/DB_Parma/Results_20m/'  # CHANGE
+  PATH_TEST_DATASET: 'dataset/DB_Parma/Results_test_20m/'  # CHANGE
+  MAX_DEPTH: 16.0
+  BATCH_SIZE: 4
+  NUM_INPUT_FRAMES: 0
+  IMAGE_HEIGHT: 448
+  IMAGE_WIDTH: 256
+  WET_DEPTH: 0.05
+FORECAST:
+  ENABLE: False
+SOLVER:
+  MAX_EPOCH: 80  # 200 for the second part of the AE training
+  BASE_LR: 0.0002
+  LR_POLICY: constant # 'cosine' for the second part of the AE training
+  COSINE_END_LR: 1e-06
+MODEL:
+  PRETRAIN: True
+  PRETRAINED_AE: 'pretrain/MovingMNIST_AE_mod.tar'  # CHANGE for the second part of the AE training
+FLOODSFORMER:
+  AE_DOWNSAMPLING: 4
+  EMBED_DIM: 512
+  LAM_GAN: 0.01  # 0.0 for the second part of the AE training
+  LAM_GDL: 1.0   # 0.1 for the second part of the AE training
+  LAM_L1: 0.0
+  LAM_MSE: 1.0
+TEST:
+  ENABLE: True
+DATA_LOADER:
+  ZERO_DEPTH: 0.001
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+TENSORBOARD:
+  ENABLE: True
+NUM_GPUS: 1
+
+# for informations about parameters see: floodsformer/config/defaults.py

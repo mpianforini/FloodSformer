@@ -1,0 +1,45 @@
+TRAIN:
+  ENABLE: True
+  MODE: train_VPTR
+  EVAL_PERIOD: 2
+  PATIENCE: 10
+  CHECKPOINT_EPOCH_RESET: True
+DATA:
+  DATASET: DB_parabolic
+  PATH_TRAIN_DATASET: 'dataset/DB_parabolic/Results/'  # CHANGE
+  PATH_TEST_DATASET: 'dataset/DB_parabolic/Results_test/'  # CHANGE
+  MAX_DEPTH: 16.0
+  BATCH_SIZE: 4
+  NUM_INPUT_FRAMES: 8
+  IMAGE_HEIGHT: 960
+  IMAGE_WIDTH: 128
+  WET_DEPTH: 0.05
+FORECAST:
+  ENABLE: True
+  NUM_PAST_FRAMES: 8
+  NUM_FUTURE_FRAMES: 98
+SOLVER:
+  MAX_EPOCH: 500
+  BASE_LR: 0.001
+MODEL:
+  PRETRAIN: True
+  PRETRAINED_AE: 'pretrain/AE_parabolic_e86.tar'
+  PRETRAINED_VPTR: 'pretrain/MovingMNIST_FAR_mod.tar'
+FLOODSFORMER:
+  AE_DOWNSAMPLING: 4
+  EMBED_DIM: 512
+  LAM_GAN: 0.0
+  LAM_GDL: 0.1
+  LAM_L1: 0.0
+  LAM_MSE: 1.0
+TEST:
+  ENABLE: True
+DATA_LOADER:
+  ZERO_DEPTH: 0.001
+  NUM_WORKERS: 0
+  PIN_MEMORY: True
+TENSORBOARD:
+  ENABLE: True
+NUM_GPUS: 1
+
+# for informations about parameters see: floodsformer/config/defaults.py
